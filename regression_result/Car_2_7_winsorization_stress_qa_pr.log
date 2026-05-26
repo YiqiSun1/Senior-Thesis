@@ -1,0 +1,99 @@
+Original data: 8022 obs | 489 firms
+Index(['symbol', 'year', 'quarter', 'call_date', 'stress_pr', 'stress_qa',
+       'stress_whole_x', 'car_27', 'stress_whole_y', 'car_01', 'vol', 'mom',
+       'POSWORDS', 'NEGWORDS', 'lnmve', 'bm', 'atq', 'UE', 'actual_eps',
+       'median_forecast', 'numest', 'time'],
+      dtype='str')
+after dropping N/A: 7493 obs | 472 firms
+Final sample: 7491
+after dropping N/A: 5359 obs | 446 firms
+Final sample: 5342
+###
+
+Estimation:  OLS
+Dep. var.: car_27
+sample: None = all
+Inference:  CRV1
+Observations:  5342
+
+| Coefficient   |   Estimate |   Std. Error |   t value |   Pr(>|t|) |   2.5% |   97.5% |
+|:--------------|-----------:|-------------:|----------:|-----------:|-------:|--------:|
+| Intercept     |      0.003 |        0.010 |     0.257 |      0.800 | -0.019 |   0.024 |
+| stress_qa     |     -0.000 |        0.001 |    -0.016 |      0.987 | -0.002 |   0.002 |
+| stress_pr     |      0.000 |        0.001 |     0.112 |      0.912 | -0.002 |   0.002 |
+| vol           |      0.108 |        0.122 |     0.889 |      0.383 | -0.144 |   0.361 |
+| mom           |      0.015 |        0.005 |     2.689 |      0.013 |  0.003 |   0.026 |
+| lnmve         |     -0.000 |        0.001 |    -0.478 |      0.637 | -0.002 |   0.001 |
+| bm            |      0.006 |        0.004 |     1.521 |      0.143 | -0.002 |   0.014 |
+| UE            |      0.001 |        0.003 |     0.574 |      0.571 | -0.004 |   0.007 |
+| POSWORDS      |     -0.085 |        0.095 |    -0.891 |      0.383 | -0.282 |   0.112 |
+| NEGWORDS      |      0.004 |        0.267 |     0.014 |      0.989 | -0.550 |   0.557 |
+---
+RMSE: 0.038 R2: 0.008 
+model 1 cluster no FE result None
+###
+
+Estimation:  OLS
+Dep. var.: car_27, Fixed effects: symbol
+sample: None = all
+Inference:  CRV1
+Observations:  5342
+
+| Coefficient   |   Estimate |   Std. Error |   t value |   Pr(>|t|) |   2.5% |   97.5% |
+|:--------------|-----------:|-------------:|----------:|-----------:|-------:|--------:|
+| stress_qa     |     -0.001 |        0.001 |    -0.749 |      0.462 | -0.003 |   0.001 |
+| stress_pr     |      0.000 |        0.001 |     0.032 |      0.974 | -0.003 |   0.003 |
+| vol           |     -0.106 |        0.179 |    -0.588 |      0.562 | -0.477 |   0.266 |
+| mom           |      0.010 |        0.006 |     1.526 |      0.141 | -0.003 |   0.022 |
+| lnmve         |     -0.007 |        0.003 |    -1.971 |      0.061 | -0.013 |   0.000 |
+| bm            |      0.012 |        0.010 |     1.199 |      0.243 | -0.009 |   0.034 |
+| UE            |      0.002 |        0.003 |     0.733 |      0.471 | -0.004 |   0.008 |
+| POSWORDS      |     -0.205 |        0.169 |    -1.218 |      0.236 | -0.555 |   0.144 |
+| NEGWORDS      |     -0.095 |        0.307 |    -0.309 |      0.760 | -0.731 |   0.541 |
+---
+RMSE: 0.037 R2: 0.091 R2 Within: 0.005 
+model 2 firm FE result None
+###
+
+Estimation:  OLS
+Dep. var.: car_27, Fixed effects: time
+sample: None = all
+Inference:  CRV1
+Observations:  5342
+
+| Coefficient   |   Estimate |   Std. Error |   t value |   Pr(>|t|) |   2.5% |   97.5% |
+|:--------------|-----------:|-------------:|----------:|-----------:|-------:|--------:|
+| stress_qa     |      0.000 |        0.001 |     0.078 |      0.938 | -0.002 |   0.002 |
+| stress_pr     |      0.000 |        0.001 |     0.428 |      0.673 | -0.002 |   0.003 |
+| vol           |      0.188 |        0.130 |     1.452 |      0.161 | -0.081 |   0.457 |
+| mom           |      0.013 |        0.005 |     2.300 |      0.031 |  0.001 |   0.024 |
+| lnmve         |     -0.000 |        0.001 |    -0.268 |      0.792 | -0.002 |   0.001 |
+| bm            |      0.006 |        0.004 |     1.565 |      0.132 | -0.002 |   0.014 |
+| UE            |      0.000 |        0.002 |     0.176 |      0.862 | -0.004 |   0.005 |
+| POSWORDS      |     -0.058 |        0.097 |    -0.594 |      0.558 | -0.259 |   0.144 |
+| NEGWORDS      |      0.104 |        0.233 |     0.447 |      0.659 | -0.379 |   0.587 |
+---
+RMSE: 0.038 R2: 0.028 R2 Within: 0.007 
+model 3 time FE result None
+###
+
+Estimation:  OLS
+Dep. var.: car_27, Fixed effects: symbol + time
+sample: None = all
+Inference:  CRV1
+Observations:  5342
+
+| Coefficient   |   Estimate |   Std. Error |   t value |   Pr(>|t|) |   2.5% |   97.5% |
+|:--------------|-----------:|-------------:|----------:|-----------:|-------:|--------:|
+| stress_qa     |     -0.001 |        0.001 |    -0.624 |      0.539 | -0.003 |   0.002 |
+| stress_pr     |      0.000 |        0.001 |     0.423 |      0.677 | -0.002 |   0.003 |
+| vol           |      0.079 |        0.178 |     0.446 |      0.660 | -0.289 |   0.448 |
+| mom           |      0.008 |        0.006 |     1.203 |      0.242 | -0.005 |   0.020 |
+| lnmve         |     -0.006 |        0.004 |    -1.502 |      0.147 | -0.014 |   0.002 |
+| bm            |      0.015 |        0.010 |     1.535 |      0.139 | -0.005 |   0.036 |
+| UE            |      0.001 |        0.003 |     0.354 |      0.727 | -0.005 |   0.007 |
+| POSWORDS      |     -0.181 |        0.156 |    -1.161 |      0.258 | -0.503 |   0.142 |
+| NEGWORDS      |      0.035 |        0.273 |     0.127 |      0.900 | -0.532 |   0.601 |
+---
+RMSE: 0.036 R2: 0.112 R2 Within: 0.005 
+model 4 firm + time FE result None
