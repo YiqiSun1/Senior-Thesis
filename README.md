@@ -216,3 +216,67 @@ EARNINGSCALL_API_KEY=your_key_here
 - **Quarters per firm**: Up to 4 per year
 - **Company-quarters scored**: 3,000+
 - **Final regression sample**: ~5,342 observations across 429 firms -->
+
+## Motivation: 
+
+Stress is hard to examine. Usually, we gave out a survey and ask people to rate their stress level. This is to some extent a good proxy but with the rise of large language model, it's made possible to quantify stress that's otherwise hard to measure.
+
+Intuitively, CEO stress can be tied to a company performance due to two reasons. First, a stressed CEO might not have a mental capacity to guide company's operation. On the other hand, a stressed CEO could also be a signal of dedication and hard work, which could be good for the company.
+
+This thesis is exploratory in nature and seeks to see if the stress level of CEOs could generate "abnormal" return beyond the market return. I measured CEO stress through the text data of the earning call that they participate in usally quarterly using a psychology-backed prompt given to Claude. The stress level is scored on a scale of 1 to 5, with 5 being the most stressed.
+
+
+## Main results: 
+1. 1 unit increase in stress level exibited in the Q&A session is associated with a 0.9% decrease in the 2-day cumulative abnormal return holding common control variables including firm fundamentals, earnings surprise, and traditional dictionary-based sentiment measures. This means the market immediately react to the LLM stress signal. 
+
+**Dependent variable:** `car_01` · **Estimation:** OLS · **Inference:** clustered (CRV1) · **N:** 7,491 · **R²:** 0.045 · **RMSE:** 0.057
+
+| Coefficient | Estimate | Std. Error | t value | Pr(>\|t\|) |   2.5% |  97.5% |
+|:------------|---------:|-----------:|--------:|----------:|-------:|-------:|
+| Intercept   |    0.042 |      0.012 |   3.617 |     0.002 |  0.018 |  0.067 |
+| **stress_qa** | **−0.009** |  **0.001** | **−6.277** | **0.000** | **−0.012** | **−0.006** |
+| vol         |    0.351 |      0.099 |   3.562 |     0.002 |  0.147 |  0.556 |
+| mom         |   −0.005 |      0.005 |  −1.114 |     0.277 | −0.016 |  0.005 |
+| lnmve       |   −0.002 |      0.001 |  −2.395 |     0.026 | −0.004 | −0.000 |
+| bm          |   −0.001 |      0.003 |  −0.403 |     0.691 | −0.008 |  0.005 |
+| UE          |    0.031 |      0.004 |   8.048 |     0.000 |  0.023 |  0.039 |
+| POSWORDS    |   −0.013 |      0.143 |  −0.089 |     0.930 | −0.309 |  0.283 |
+| NEGWORDS    |   −0.764 |      0.237 |  −3.228 |     0.004 | −1.255 | −0.273 |
+
+2. Stress exibited in the prepared remarks has a higher magnitude of effect on the 2-day cumulative abnormal return that the Q&A session. This is unexpected given my prior is that people would pay more attention to the Q&A session since CEO can't prepare the answer to spontaneous questions. 
+
+**Dependent variable:** `car_01` · **Estimation:** OLS · **Inference:** clustered (CRV1) · **N:** 5,342 · **R²:** 0.062 · **RMSE:** 0.056
+
+| Coefficient | Estimate | Std. Error | t value | Pr(>\|t\|) |   2.5% |  97.5% |
+|:------------|---------:|-----------:|--------:|----------:|-------:|-------:|
+| Intercept   |    0.058 |      0.014 |   3.977 |     0.001 |  0.028 |  0.088 |
+| **stress_qa** | **-0.006** | **0.002** | **-3.757** | **0.001** | **-0.010** | **-0.003** |
+| **stress_pr** | **-0.013** | **0.002** | **-6.870** | **0.000** | **-0.016** | **-0.009** |
+| vol         |    0.472 |      0.109 |   4.352 |     0.000 |  0.247 |  0.697 |
+| mom         |   -0.014 |      0.007 |  -1.880 |     0.073 | -0.029 |  0.001 |
+| lnmve       |   -0.002 |      0.001 |  -1.951 |     0.064 | -0.005 |  0.000 |
+| bm          |    0.000 |      0.004 |   0.003 |     0.997 | -0.009 |  0.009 |
+| UE          |    0.031 |      0.004 |   7.676 |     0.000 |  0.023 |  0.040 |
+| POSWORDS    |    0.025 |      0.135 |   0.187 |     0.853 | -0.255 |  0.305 |
+| NEGWORDS    |   -0.322 |      0.310 |  -1.039 |     0.310 | -0.966 |  0.321 |
+
+* one thing to note: This has a different sample size that the first regressio result since in the initial data cleaning process, some prepared remarks are missing due to the quality of the transcript.
+
+
+3. Stress signal has no predictive power on both the [2,7] and [2,180] CAR. This means the market adjust to the stress signal very quickly. 
+
+
+## Work in Progress: 
+I am currently working on backtesting this strategy with live market data account for transaction cost. 
+
+Originally, I wanted to incorporate facial image of CEO or even specific characteristics of CEO face such as dark circles for proxy of stress. However, I had some difficulty thinking about how to get quality image of CEOs with universal lightings and angles. Furtherm, audio could be another useful things to add, but some research has done that already. 
+
+## Caveat: 
+You can access a paper version of this project in here. The paper does not include backtesting. (https://scholarship.claremont.edu/cmc_theses/4150/)
+
+If you have questions or are interested in the code and methodology, contact me at ysun26@cmc.edu.
+
+I am open to suggestions to improve this project or collaboration on other things. 
+
+
+
