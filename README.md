@@ -219,11 +219,13 @@ EARNINGSCALL_API_KEY=your_key_here
 
 ## Motivation: 
 
-Stress is hard to examine. Usually, we gave out a survey and ask people to rate their stress level. This is to some extent a good proxy but with the rise of large language model, it's made possible to quantify stress that's otherwise hard to measure.
+Stress is hard to examine. Usually, we gave out surveys and ask people to rate their stress level. This is to some extent a good proxy but with the rise of large language model, it's made possible to quantify things that's otherwise hard to measure. Stress or "sentiment" is one of them. This allow an opportunity to examine the relationship between CEO stress and company performance or stock return. 
 
 Intuitively, CEO stress can be tied to a company performance due to two reasons. First, a stressed CEO might not have a mental capacity to guide company's operation. On the other hand, a stressed CEO could also be a signal of dedication and hard work, which could be good for the company.
 
-This thesis is exploratory in nature and seeks to see if the stress level of CEOs could generate "abnormal" return beyond the market return. I measured CEO stress through the text data of the earning call that they participate in usally quarterly using a psychology-backed prompt given to Claude. The stress level is scored on a scale of 1 to 5, with 5 being the most stressed.
+Since large language model are particularly suceptible to text data, the CEO earning call transcript can be used to measure CEO stress. 
+
+This thesis is exploratory in nature and seeks to see if the stress level of CEOs could generate "abnormal" return beyond the market return. The return window I tested are short term [+0,+1], medium term [+2,+7], and long term [+2, +180]. I used Claude Sonnet 4.6 with a psychology-backed prompt quantifying the CEO internal stress. The stress level is scored on a scale of 1 to 5, with 5 being the most stressed.
 
 
 ## Main results: 
@@ -269,13 +271,20 @@ This thesis is exploratory in nature and seeks to see if the stress level of CEO
 ## Work in Progress: 
 I am currently working on backtesting this strategy with live market data account for transaction cost. 
 
-Originally, I wanted to incorporate facial image of CEO or even specific characteristics of CEO face such as dark circles for proxy of stress. However, I had some difficulty thinking about how to get quality image of CEOs with universal lightings and angles. Furtherm, audio could be another useful things to add, but some research has done that already. 
+## Future:
+Originally, I wanted to incorporate facial image of CEO or even specific characteristics of CEO face such as dark circles for proxy of stress. However, I had some difficulty thinking about how to get quality image of CEOs with universal lightings and angles. Furthermore, audio could be another useful things to add, but some research has done that already. 
 
-## Caveat: 
+## Accessing the code and paper: 
 You can access a paper version of this project in here. The paper does not include backtesting. (https://scholarship.claremont.edu/cmc_theses/4150/)
 
 If you have questions or are interested in the code and methodology, contact me at ysun26@cmc.edu.
 
+## Limitations and discussions: 
+Several limitations of this project. First, this paper does not have a causal interpretation since there could be omitted variable bias. The stress score produced by Claude could be stress that's from internal or external factors such as company performance. So we can't say exactly what type of stress is being measured. Second, the data leakage problem: the model I used (Claude Sonnet 4.6) might be trained on the the stock data and already "know" what happen to the stock. 
+
+At the end of the day, this is a good exercise and shows LLM has huge potential in understanding human language and even psychology. I am both scared and excited about the future of LLM.
+
+## Critique and advice:
 I am open to suggestions to improve this project or collaboration on other things. 
 
 
